@@ -1,25 +1,16 @@
 extern void *malloc(int);
 
-char *m = "invalid";
+char *m0 = "invalid";
+char *m1 = "move ring %d from stack %d to stack %d\n";
 
 char *bits;
 int len;
 
-move_ring(int n, int a, int b)
-{
-    printf("move ring %d from stack %d to stack %d\n", n, a, b);
-}
-
 void move_stack(int n, int a, int b, int c)
 {
-    if (n == 1)
-	move_ring(n, a, b);
-    else
-    {
-	move_stack(n - 1, a, c, b);
-	move_ring(n, a, b);
-	move_stack(n - 1, c, b, a);
-    }
+    (n == 1) ?0: move_stack(n - 1, a, c, b);
+    printf(m1, n, a, b);
+    (n == 1) ?0: move_stack(n - 1, c, b, a);
 }
 
 void addrem(int n, char c)
@@ -52,14 +43,14 @@ int main(int argc, char *argv[])
     }
     else if (len < 0)
     {
-	len = -len;
+	len = len - len - len;
 	bits = malloc(len);
 	memset(bits, '1', len);
 	puts(bits);
 	addrem(len, '0');
     }
     else
-	return 1, printf("invalid\n");
+	return puts(m0), 1;
 
     return 0;
 }
