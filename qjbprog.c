@@ -1,6 +1,4 @@
-extern void *malloc(int);
-
-char *a = "Usage: %s [+|-]n\n\tn != 0, -128 < n < 127\n";
+char *a = "invalid";
 char *b = "move ring %d from stack %d to stack %d\n";
 
 char *bits;
@@ -8,93 +6,94 @@ signed char len;
 
 int main(int d, char *e[])
 {
+    char *q = ((char *)(e + 2));
     if ((! e[0]) || (! e[1]))
-	return printf(a, e[0]), 1;
+	return puts(a), 1;
     else if (e[2] && (d != 2))
-	return printf(a, e[0]), 1;
+	return puts(a), 1;
     else if (!e[2])
     {
 	if ((atoi(e[1]) < -128) || (atoi(e[1]) > 127) ||
 	    ((len = atoi(e[1])) == 0))
-	    return printf(a, e[0]), 1;
+	    return puts(a), 1;
 	if (len > -len)
 	{
-	    *(((char *)(e + 2))) = len;
-	    *(((char *)(e + 2))+1) = 1;
-	    *(((char *)(e + 2))+2) = 2;
-	    *(((char *)(e + 2))+3) = 1;
+	    q[0] = len;
+	    q[1] = 1;
+	    q[2] = 2;
+	    q[3] = 1;
 	}
 	else if (len < 0)
 	{
-	    bits = malloc(-len);
+	    bits = (char *)malloc(-len);
 	    memset(bits, '1', -len);
 	    puts(bits);
-	    *(((char *)(e + 2))) = len;
-	    *(((char *)(e + 2))+1) = '0';
-	    *(((char *)(e + 2))+2) = 0;
-	    *(((char *)(e + 2))+3) = 0;
+	    q[0] = len;
+	    q[1] = '0';
+	    q[2] = 0;
+	    q[3] = 0;
 	}
 	return main(d, e);
     }
     else
     {
-	if (*(((char *)(e + 2))+3))
+	if (q[3])
 	{
 	    char c, t;
-	    c = (*(((char *)(e + 2))+1) + *(((char *)(e + 2))+2) == 3) ? 3 : (*(((char *)(e + 2))+1) + *(((char *)(e + 2))+2) == 4) ? 2 : 1;
-	    if (*(((char *)(e + 2))) != 1) {
-		(*(((char *)(e + 2))))--;
-		t = *(((char *)(e + 2))+2);
-		*(((char *)(e + 2))+2) = c;
+	    c = (q[1] + q[2] == 3) ? 3 : (q[1] + q[2] == 4) ? 2 : 1;
+	    if (q[0] != 1) {
+		(q[0])--;
+		t = q[2];
+		q[2] = c;
 		main(d, e);
-		c = *(((char *)(e + 2))+2);
-		*(((char *)(e + 2))+2) = t;
-		(*(((char *)(e + 2))))++;
+		c = q[2];
+		q[2] = t;
+		(q[0])++;
 	    }
-	    printf(b, *(((char *)(e + 2))), *(((char *)(e + 2))+1), *(((char *)(e + 2))+2));
-	    if (*(((char *)(e + 2))) != 1) {
-		(*(((char *)(e + 2))))--;
-		t = *(((char *)(e + 2))+1);
-		*(((char *)(e + 2))+1) = c;
+	    printf(b, q[0], q[1], q[2]);
+	    if (q[0] != 1) {
+		(q[0])--;
+		t = q[1];
+		q[1] = c;
 		main(d, e);
-		c = *(((char *)(e + 2))+1);
-		*(((char *)(e + 2))+1) = t;
-		(*(((char *)(e + 2))))++;
+		c = q[1];
+		q[1] = t;
+		(q[0])++;
 	    }
 	}
 	else
 	{
-	    switch (- 1 + (-(*(((char *)(e + 2))))) - 1)
+	    switch (- 1 + (-(q[0])) - 1)
 	    {
 	      case 0:
-		puts(bits, bits[- len - (1 + ((*(((char *)(e + 2))+1) & 1) ^ 1))] = *(((char *)(e + 2))+1));
-		puts(bits, bits[- len - (1 + (*(((char *)(e + 2))+1) & 1))] = *(((char *)(e + 2))+1));
+		puts(bits, bits[- len - (1 + ((q[1] & 1) ^ 1))] = q[1]);
+		puts(bits, bits[- len - (1 + (q[1] & 1))] = q[1]);
 		break;
 	      case -1:
-		puts(bits, bits[- len - 1] = *(((char *)(e + 2))+1));
+		puts(bits, bits[- len - 1] = q[1]);
 		break;
 	      default:
-		*(((char *)(e + 2))) += 1 + ((*(((char *)(e + 2))+1) & 1) ^ 1);
+		q[0] += 1 + ((q[1] & 1) ^ 1);
 		main(d, e);
-		*(((char *)(e + 2))) -= 1 + ((*(((char *)(e + 2))+1) & 1) ^ 1);
-		if (*(((char *)(e + 2))+1) & 1) {
-		    (*(((char *)(e + 2))))+=2;
-		    (*(((char *)(e + 2))+1)) ^= 1;
+		q[0] -= 1 + ((q[1] & 1) ^ 1);
+		if (q[1] & 1) {
+		    (q[0])+=2;
+		    (q[1]) ^= 1;
 		    main(d, e);
-		    (*(((char *)(e + 2))+1)) ^= 1;
-		    (*(((char *)(e + 2))))-=2;
+		    (q[1]) ^= 1;
+		    (q[0])-=2;
 		}
-		puts(bits, bits[*(((char *)(e + 2))) - len] = *(((char *)(e + 2))+1));
-		if (!(*(((char *)(e + 2))+1) & 1)) {
-		    (*(((char *)(e + 2))))+=2;
-		    (*(((char *)(e + 2))+1)) ^= 1;
+		puts(bits, bits[q[0] - len] = q[1]);
+		if (!(q[1] & 1)) {
+		    (q[0])+=2;
+		    (q[1]) ^= 1;
 		    main(d, e);
-		    (*(((char *)(e + 2))+1)) ^= 1;
-		    (*(((char *)(e + 2))))-=2;
+		    (q[1]) ^= 1;
+		    (q[0])-=2;
 		}
-		*(((char *)(e + 2))) += 1 + (*(((char *)(e + 2))+1) & 1);
+		q[0] += 1 + (q[1] & 1);
 		main(d, e);
-		*(((char *)(e + 2))) -= 1 + (*(((char *)(e + 2))+1) & 1);
+		q[0] -= 1 + (q[1] & 1);
 	    }
 	}
     }
