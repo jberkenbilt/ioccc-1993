@@ -6,33 +6,51 @@ char *m1 = "move ring %d from stack %d to stack %d\n";
 char *bits;
 signed char len;
 
-void move(char n, char a, char b, char f)
+void move(char *args)
 {
-    if (f)
+    char *n, *a, *b, *f;
+    n = args;
+    a = args + 1;
+    b = args + 2;
+    f = args + 3;
+
+    if (*f)
     {
-	char c;
-	c = (a + b == 3) ? 3 : (a + b == 4) ? 2 : 1;
-	(n == 1) ?0: move(n - 1, a, c, 1);
-	printf(m1, n, a, b);
-	(n == 1) ?0: move(n - 1, c, b, 1);
+	char c, t;
+	c = (*a + *b == 3) ? 3 : (*a + *b == 4) ? 2 : 1;
+	if (*n != 1) {
+	    (*n)--; t = *b; *b = c; move(args); c = *b; *b = t; (*n)++;
+	}
+	printf(m1, *n, *a, *b);
+	if (*n != 1) {
+	    (*n)--; t = *a; *a = c; move(args); c = *a; *a = t; (*n)++;
+	}
     }
     else
     {
-	switch (- 1 + (-n) - 1)
+	switch (- 1 + (-(*n)) - 1)
 	{
 	  case 0:
-	    puts(bits, bits[- len - (1 + ((a & 1) ^ 1))] = a);
-	    puts(bits, bits[- len - (1 + (a & 1))] = a);
+	    puts(bits, bits[- len - (1 + ((*a & 1) ^ 1))] = *a);
+	    puts(bits, bits[- len - (1 + (*a & 1))] = *a);
 	    break;
 	  case -1:
-	    puts(bits, bits[- len - 1] = a);
+	    puts(bits, bits[- len - 1] = *a);
 	    break;
 	  default:
-	    move(n + 1 + ((a & 1) ^ 1), a, 0, 0);
-	    (a & 1) ? move(n + 1 + 1, a ^ 1, 0, 0):0;
-	    puts(bits, bits[n - len] = a);
-	    (a & 1) ?0: move(n + 1 + 1, a ^ 1, 0, 0);
-	    move(n + 1 + (a & 1), a, 0, 0);
+	    *n += 1 + ((*a & 1) ^ 1);
+	    move(args);
+	    *n -= 1 + ((*a & 1) ^ 1);
+	    if (*a & 1) {
+		(*n)++; (*n)++; (*a) ^= 1; move(args); (*a) ^= 1; (*n)--; (*n)--;
+	    }
+	    puts(bits, bits[*n - len] = *a);
+	    if (!(*a & 1)) {
+		(*n)++; (*n)++; (*a) ^= 1; move(args); (*a) ^= 1; (*n)--; (*n)--;
+	    }
+	    *n += 1 + (*a & 1);
+	    move(args);
+	    *n -= 1 + (*a & 1);
 	}
     }
 }
@@ -71,7 +89,7 @@ int main(int argc, char *argv[])
 	return main(argc, argv);
     }
     else
-	move(args[0], args[1], args[2], args[3]);
+	move(args);
 
     return 0;
 }
