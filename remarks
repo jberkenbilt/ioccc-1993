@@ -1,11 +1,13 @@
+    WHAT THIS PROGRAM DOES
+    ======================
     This program takes a single integer argument between -128
     and 127 not including 0.  If the argument is positive, the
     program produces a solution to the Towers of Hanoi with that
     number of rings.  If the argument is negative, the program
-    produces a solution to the Chinese Patience puzzle with a
-    number of rings equal to the absolute value of the argument.
-    Info files are included that describe these two puzzles in
-    detail.
+    produces a solution to the Patience puzzle with a number of
+    rings equal to the absolute value of the argument.	Info
+    files (called hanoi and patience) are included that describe
+    these two puzzles in detail.
 
     Examples:
     ./prog 5
@@ -13,6 +15,17 @@
     ./prog -6
     Output: solution to the Patience puzzle for six rings
 
+    The format of the output for the Towers of Hanoi case is
+    simply a text description of how to solve the puzzle.  For
+    the patience puzzle, the output is a sequence binary codes
+    representing successive states of the puzzle.  The rightmost
+    digit represents the first ring.  A "1" means the ring is on
+    the U; a "0" means it is off the U.  The program prints the
+    word "Invalid" in response to illegal commandline
+    parameters.
+
+    MOTIVATION
+    ==========
     Most people who have written software for other people have
     been asked to count lines of code.	Naturally, this brings
     up the controversial question of exactly what defines a line
