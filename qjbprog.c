@@ -5,9 +5,6 @@ char *m = "invalid";
 char *bits;
 int len;
 
-void add(int);
-void rem(int);
-
 move_ring(int n, int a, int b)
 {
     printf("move ring %d from stack %d to stack %d\n", n, a, b);
@@ -31,50 +28,45 @@ void p_addrem(int n, char c)
     puts(bits, bits[len - n] = c);
 }
 
-void add(int n)
+void addrem(int n, char c)
 {
     if (n > 2)
     {
-	add(n - 1);
-	rem(n - 2);
-	p_addrem(n, '1');
-	add(n - 2);
+	if (c == '1')
+	{
+	    addrem(n - 1, '1');
+	    addrem(n - 2, '0');
+	    p_addrem(n, c);
+	    addrem(n - 2, '1');
+	}
+	else
+	{
+	    addrem(n - 2, '0');
+	    p_addrem(n, c);
+	    addrem(n - 2, '1');
+	    addrem(n - 1, '0');
+	}
     }
     else if (n == 2)
     {
-	p_addrem(1, '1');
-	p_addrem(2, '1');
+	if (c == '1')
+	{
+	    p_addrem(1, c);
+	    p_addrem(2, c);
+	}
+	else
+	{
+	    p_addrem(2, c);
+	    p_addrem(1, c);
+	}
     }
     else if (n == 1)
     {
-	p_addrem(1, '1');
+	p_addrem(1, c);
     }
     else
 	puts(m);
 }
-
-void rem(int n)
-{
-    if (n > 2)
-    {
-	rem(n - 2);
-	p_addrem(n, '0');
-	add(n - 2);
-	rem(n - 1);
-    }
-    else if (n == 2)
-    {
-	p_addrem(2, '0');
-	p_addrem(1, '0');
-    }
-    else if (n == 1)
-    {
-	p_addrem(1, '0');
-    }
-    else
-	puts(m);
-}
-
 
 int main(int argc, char *argv[])
 {
@@ -89,7 +81,7 @@ int main(int argc, char *argv[])
 	bits = malloc(len);
 	memset(bits, '1', len);
 	puts(bits);
-	rem(len);
+	addrem(len, '0');
     }
     else
 	return 1, printf("invalid\n");
