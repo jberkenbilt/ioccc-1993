@@ -1,54 +1,66 @@
 extern void *malloc(int);
 
-char *m0 = "Usage: %s [+|-]n\n\tn != 0\n";
+char *m0 = "Usage: %s [+|-]n\n\tn != 0, -128 < n < 127\n";
 char *m1 = "move ring %d from stack %d to stack %d\n";
 
 char *bits;
-int len;
+signed char len;
 
-void move_stack(int n, int a, int b, int c)
+void move(int n, char a, char b, char f)
 {
-    (n == 1) ?0: move_stack(n - 1, a, c, b);
-    printf(m1, n, a, b);
-    (n == 1) ?0: move_stack(n - 1, c, b, a);
-}
-
-void addrem(int n, char c)
-{
-    switch (- 1 + (-n) - 1)
+    if (f)
     {
-      case 0:
-	puts(bits, bits[- len - (1 + ((c & 1) ^ 1))] = c);
-	puts(bits, bits[- len - (1 + (c & 1))] = c);
-	break;
-      case -1:
-	puts(bits, bits[- len - 1] = c);
-	break;
-      default:
-	addrem(n + 1 + ((c & 1) ^ 1), c);
-	(c & 1) ? addrem(n + 1 + 1, c ^ 1):0;
-	puts(bits, bits[n - len] = c);
-	(c & 1) ?0: addrem(n + 1 + 1, c ^ 1);
-	addrem(n + 1 + (c & 1), c);
+	char c;
+	c = (a + b == 3) ? 3 : (a + b == 4) ? 2 : 1;
+	(n == 1) ?0: move(n - 1, a, c, 1);
+	printf(m1, n, a, b);
+	(n == 1) ?0: move(n - 1, c, b, 1);
+    }
+    else
+    {
+	switch (- 1 + (-n) - 1)
+	{
+	  case 0:
+	    puts(bits, bits[- len - (1 + ((a & 1) ^ 1))] = a);
+	    puts(bits, bits[- len - (1 + (a & 1))] = a);
+	    break;
+	  case -1:
+	    puts(bits, bits[- len - 1] = a);
+	    break;
+	  default:
+	    move(n + 1 + ((a & 1) ^ 1), a, 0, 0);
+	    (a & 1) ? move(n + 1 + 1, a ^ 1, 0, 0):0;
+	    puts(bits, bits[n - len] = a);
+	    (a & 1) ?0: move(n + 1 + 1, a ^ 1, 0, 0);
+	    move(n + 1 + (a & 1), a, 0, 0);
+	}
     }
 }
 
 
 int main(int argc, char *argv[])
 {
-    if ((argc != 2) || ((len = atoi(argv[1])) == 0))
+    char args[4];
+    if ((! argv[0]) || (! argv[1]))
 	return printf(m0, argv[0]), 1;
-
-    if (len > 0)
+    else if (argv[2] && (argc != 2))
+	return printf(m0, argv[0]), 1;
+    else if (!argv[2])
     {
-	move_stack(len, 1, 2, 3);
+	if ((atoi(argv[1]) < -128) || (atoi(argv[1]) > 127) ||
+	    ((len = atoi(argv[1])) == 0))
+	    return printf(m0, argv[0]), 1;
+    }
+    if (len > -len)
+    {
+	move(len, 1, 2, 1);
     }
     else if (len < 0)
     {
 	bits = malloc(-len);
 	memset(bits, '1', -len);
 	puts(bits);
-	addrem(len, '0');
+	move(len, '0', 0, 0);
     }
 
     return 0;
