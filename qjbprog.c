@@ -1,29 +1,9 @@
-/* 
- * $Id: qjbprog.c,v 1.5 1993-03-13 13:29:49 qjb Exp $
- * $Source: /tmp/ioccc-1993/ioccc-1993/qjbprog.c,v $
- * $Author: qjb $
- *
- * This program takes a single argument.  If the argument is positive,
- * it solves the tower of hanoi with argv[1] rings.  If the argument
- * is positive, it sovles the case of the "patience puzzle", also
- * known as the Chinese ring puzzle and other names, with -argv[1]
- * rings.
- *
- * Obfuscation ideas:  Implement the whole program as main.
- * modify argv[1]; use argv[2] as extra data.
- * have a = b == c somewhere
- * use macros to manipulate bits
- * use arrays of numeric characters for strings
- */
-
-#if !defined(lint) && !defined(CODECENTER) || defined(RCS_HDRS)
-static char *rcsid = "$Id: qjbprog.c,v 1.5 1993-03-13 13:29:49 qjb Exp $";
-#endif /* !lint && !CODECENTER || RCS_HDRS */
-
 extern void *malloc(int);
 
-static char *bits;
-static int len;
+char *m = "invalid";
+
+char *bits;
+int len;
 
 void add(int);
 void rem(int);
@@ -46,16 +26,9 @@ void move_stack(int n, int a, int b, int c)
 }
 
 
-void p_add(int n)
+void p_addrem(int n, char c)
 {
-    bits[len - n] = '1';
-    puts(bits);
-}
-
-void p_rem(int n)
-{
-    bits[len - n] = '0';
-    puts(bits);
+    puts(bits, bits[len - n] = c);
 }
 
 void add(int n)
@@ -64,20 +37,20 @@ void add(int n)
     {
 	add(n - 1);
 	rem(n - 2);
-	p_add(n);
+	p_addrem(n, '1');
 	add(n - 2);
     }
     else if (n == 2)
     {
-	p_add(1);
-	p_add(2);
+	p_addrem(1, '1');
+	p_addrem(2, '1');
     }
     else if (n == 1)
     {
-	p_add(1);
+	p_addrem(1, '1');
     }
     else
-	printf("invalid\n");
+	puts(m);
 }
 
 void rem(int n)
@@ -85,21 +58,21 @@ void rem(int n)
     if (n > 2)
     {
 	rem(n - 2);
-	p_rem(n);
+	p_addrem(n, '0');
 	add(n - 2);
 	rem(n - 1);
     }
     else if (n == 2)
     {
-	p_rem(2);
-	p_rem(1);
+	p_addrem(2, '0');
+	p_addrem(1, '0');
     }
     else if (n == 1)
     {
-	p_rem(1);
+	p_addrem(1, '0');
     }
     else
-	printf("invalid\n");
+	puts(m);
 }
 
 
