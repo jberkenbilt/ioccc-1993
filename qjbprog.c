@@ -1,5 +1,5 @@
 /* 
- * $Id: qjbprog.c,v 1.1 1993-03-08 03:56:27 qjb Exp $
+ * $Id: qjbprog.c,v 1.2 1993-03-08 04:12:01 qjb Exp $
  * $Source: /tmp/ioccc-1993/ioccc-1993/qjbprog.c,v $
  * $Author: qjb $
  *
@@ -8,7 +8,7 @@
  */
 
 #if !defined(lint) && !defined(CODECENTER) || defined(RCS_HDRS)
-static char *rcsid = "$Id: qjbprog.c,v 1.1 1993-03-08 03:56:27 qjb Exp $";
+static char *rcsid = "$Id: qjbprog.c,v 1.2 1993-03-08 04:12:01 qjb Exp $";
 #endif /* !lint && !CODECENTER || RCS_HDRS */
 
 #ifdef abs
@@ -17,17 +17,22 @@ static char *rcsid = "$Id: qjbprog.c,v 1.1 1993-03-08 03:56:27 qjb Exp $";
 
 #define abs(x) (((x) < 0) ? (-(x)) : (x))
 
+static char *bits;
+static int len;
+
 void add(int);
 void rem(int);
 
 void p_add(int n)
 {
-    printf("+%d  ", n);
+    bits[len - n] = '1';
+    puts(bits);
 }
 
 void p_rem(int n)
 {
-    printf("-%d  ", n);
+    bits[len - n] = '0';
+    puts(bits);
 }
 
 void add(int n)
@@ -41,8 +46,8 @@ void add(int n)
     }
     else if (n == 2)
     {
-	p_add(2);
 	p_add(1);
+	p_add(2);
     }
     else if (n == 1)
     {
@@ -77,12 +82,18 @@ void rem(int n)
 
 int main(int argc, char *argv[])
 {
-    int n = atoi(argv[1]);
-    if (n > 0)
-	rem(n);
+    len = atoi(argv[1]);
+    if (len > 0)
+    {
+	bits = malloc(len);
+	memset(bits, '1', len);
+	puts(bits);
+	rem(len);
+    }
     else
-	printf("invalid");
-    printf("\n");
+    {
+	printf("invalid\n");
+    }
 
     return 0;
 }
