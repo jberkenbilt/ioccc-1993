@@ -6,49 +6,31 @@ signed char a[] = {0x69, 110, 118, 97, 108, 105, 0x64, 1-1, 0x6d, 111, 118,
 
 int main(int d, char *e[])
 {
-    char *q = (char *)(e+1+1);
-    if (!(e[0] && e[1]))
-	return puts(a), 1;
-    else if (e[1<<1] && d != 1<<1)
-	return puts(a), 1;
-    else if (!e[1- -1])
-    {
-	if (atoi(e[1]) < -0200 || atoi(e[1]) > 0x7f || (x = atoi(e[1])) == 0)
-	    return puts(a), 1;
-	if (x- -x > 1-1)
-	    q[0] = x, q[1] = q[3] = 1, q[2] = 2;
-	else
-	{
-	    memset(w = (char *)malloc(-x), '1', -x);
-	    puts(w);
-	    q[0] = x, q[1] = '0', q[2] = q[3] = 0;
-	}
-    }
+    char *q = (char *)(e+1+1), c, t;
+    e[0] && e[1] || exit(0 * puts(a) + 1);
+    e[1<<1] && d != 1<<1 && exit(0 * puts(a) + 1);
+    e[1- -1] ||
+	((atoi(e[1]) < -0200 || atoi(e[1]) > 0x7f || (x = atoi(e[1])) == 0) &&
+	 exit(0 * puts(a) + 1),
+	 (x- -x > 1-1) ? (q[0] = x, q[1] = q[3] = 1, q[2] = 2) :
+	 (memset(w = (char *)malloc(-x), '1', -x), puts(w),
+	  q[0] = x, q[1] = '0', q[2] = q[3] = 0));
     if (q[3])
-    {
-	char c = 6 - q[1] - q[2], t;
-	(q[0] != 1)?q[0]--, t = q[2], q[2] = c, main(d, e), q[2] = t, q[0]++:0;
-	printf(b, q[0], q[1], q[2]);
+	c = 6 - q[1] - q[2],
+	(q[0] != 1)?q[0]--, t = q[2], q[2] = c, main(d, e), q[2] = t, q[0]++:0,
+	printf(b, q[0], q[1], q[2]),
 	(q[0] != 1)?q[0]--, t = q[1], q[1] = c, main(d, e), q[1] = t, q[0]++:0;
-    }
     else
-    {
-	switch (- 1 - q[0] - 1)
-	{
-	  case 0:
-	    w[- x - 1 - (q[1] & 1 ^ 1)] = q[1], puts(w);
+	if (- 1 - q[0] - 1 == 0)
+	    w[- x - 1 - (q[1] & 1 ^ 1)] = q[1], puts(w),
 	    w[- x - 1 - (q[1] & 1)] = q[1], puts(w);
-	    break;
-	  case -1:
+	else if (- 1 - q[0] == 0)
 	    w[- x - 1] = q[1], puts(w);
-	    break;
-	  default:
-	    q[0] += 1 + (q[1] & 1 ^ 1), main(d, e), q[0] -= 1 + (q[1] & 1 ^ 1);
-	    (q[1] & 1) ?(q[0]+=1+1, q[1]^=1, main(d, e), q[1]^=1, q[0]-=1+1):0;
-	    w[q[0] - x] = q[1], puts(w);
-	    (q[1] & 1) ?0:(q[0]+=1+1, q[1]^=1, main(d, e), q[1]^=1, q[0]-=1+1);
+	else
+	    q[0] += 1 + (q[1] & 1 ^ 1), main(d, e), q[0] -= 1 + (q[1] & 1 ^ 1),
+	    (q[1] & 1) ?(q[0]+=1+1, q[1]^=1, main(d, e), q[1]^=1, q[0]-=1+1):0,
+	    w[q[0] - x] = q[1], puts(w),
+	    (q[1] & 1) ?0:(q[0]+=1+1, q[1]^=1, main(d, e), q[1]^=1, q[0]-=1+1),
 	    q[0] += 1 + (q[1] & 1), main(d, e), q[0] -= 1 + (q[1] & 1);
-	}
-    }
     return 0;
 }
