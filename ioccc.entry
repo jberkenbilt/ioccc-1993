@@ -1,0 +1,319 @@
+---entry---
+rule:	1993
+fix:	n
+title:	qjbprog
+entry:	0
+date:	Mon May  3 01:58:40 1993
+host:	Sun 4, SunOS 4.1.3 with acc (Sun C 1.1) and gcc 2.3.3
+	i486 PC-compatible running Linux with gcc 2.3.3
+	Decstation, Ultrix 4.2 with /bin/cc and gcc 2.0
+---remark---
+    WHAT THIS PROGRAM DOES
+    ======================
+    This program takes a single integer argument between -128
+    and 127 not including 0.  If the argument is positive, the
+    program produces a solution to the Towers of Hanoi with that
+    number of rings.  If the argument is negative, the program
+    produces a solution to the Patience puzzle with a number of
+    rings equal to the absolute value of the argument.	Info
+    files (called hanoi and patience) are included that describe
+    these two puzzles in detail.
+
+    Examples:
+    ./prog 5
+    Output: solution to Towers of Hanoi for five rings
+    ./prog -6
+    Output: solution to the Patience puzzle for six rings
+
+    The format of the output for the Towers of Hanoi case is
+    simply a text description of how to solve the puzzle.  For
+    the patience puzzle, the output is a sequence binary codes
+    representing successive states of the puzzle.  The rightmost
+    digit represents the first ring.  A "1" means the ring is on
+    the U; a "0" means it is off the U.  The program prints the
+    word "Invalid" in response to illegal commandline
+    parameters.
+
+    MOTIVATION
+    ==========
+    Most people who have written software for other people have
+    been asked to count lines of code.	Naturally, this brings
+    up the controversial question of exactly what defines a line
+    of code.  This program serves to show that counting
+    semicolons will not always provide a meaningful measure of
+    code size.	This is especially true in this program where
+    the number of semicolons itself is ambiguous.  Does it have
+    two or three?  In addition, the only "C" keyword this
+    program uses besides type names and qualifiers is "return",
+    and the only function defined in the code is "main".
+    The level of complexity of the program without multiple
+    semicolons, statements, and functions is achieved by abusing
+    C operators, especially the comma operator.  Considerable
+    use of ||, &&, and ? : helps too.  In addition, main is
+    called recursively.  The null pointer that terminates argv
+    is used to pass additional information into main.  Even
+    though the algorithms used by this code are simple, this
+    program is still hard to follow even when indented properly.
+    (It is pretty hard to indent this code reasonably, however.)
+
+    Although this program is has only been tested on UNIX
+    systems but will probably run on just about any machine with
+    an ANSI C compiler.	 It does not use the C preprocessor at
+    all.  The only functions it uses are atoi, malloc, memset,
+    printf, and puts.  It does, however, require that the
+    architecture it runs on have bytes that are at least eight
+    bits long and pointers that are at least four bytes long.
+    In addition, it requires an ANSI compiler since it uses
+    "signed char" and ANSI-style function declarations.
+
+    I have saved an RCS log containing an entry for each step of
+    the obfuscation process including some steps that were
+    eventually backed out.
+
+---author---
+name:	E. Jay Berkenbilt
+org:	Engineering Research Associates
+addr:	1595 Springhill Road
+	Vienna, VA 22182-2235
+	USA
+email:	ejb@ERA.COM
+anon:	n
+---info---
+begin 444 hanoi
+M("`@(%1H92!4;W=E<G,@;V8@2&%N;VD@:7,@82!P=7IZ;&4@8V]N<VES=&EN
+M9R!O9B!T:')E92!P;W-T<PH@("`@86YD('-E=F5R86P@<FEN9W,@;V8@=F%R
+M:6]U<R!S:7IE<RX@(%1H92!I;FET:6%L"B`@("!C;VYF:6=U<F%T:6]N(&]F
+M('1H92!G86UE(&ES('1H870@86QL('1H92!R:6YG<R!A<F4@<W1A8VME9`H@
+M("`@:6X@9&5C<F5A<VEN9R!O<F1E<B!O9B!S:7IE(&]N(&]N92!P;W-T+B`@
+M5&AE(&]B:F5C="!O9B!T:&4*("`@(&=A;64@:7,@=&\@;6]V92!A;&P@=&AE
+M(')I;F=S(&9R;VT@;VYE('!O<W0@=&\@86YO=&AE<@H@("`@<W5B:F5C="!T
+M;R!T=V\@<G5L97,Z(&]N;'D@;VYE(')I;F<@8V%N(&)E(&UO=F5D(&%T(&$@
+M=&EM92P*("`@(&%N9"!A="!N;R!T:6UE(&-A;B!O;F4@<FEN9R!B92!P;&%C
+M960@;VX@=&]P(&]F(&$@<VUA;&QE<@H@("`@<FEN9RX@(%1H92!N=6UB97(@
+M;V8@<W1E<',@;F5C97-S87)Y('1O('-O;'9E('1H:7,@<'5Z>FQE(&ES"B`@
+C("!E>'!O;F5N=&EA;"!I;B!T:&4@;G5M8F5R(')I;F=S+@H`
+`
+end
+---info---
+begin 444 patience
+M("`@(%1H92!0871I96YC92!P=7IZ;&4L('!R;V)A8FQY(&]F($-H:6YE<V4@
+M;W)I9VEN+"!C;VYS:7-T<R!O9@H@("`@86X@:7)O;B!5+7-H87!E9"!P:65C
+M92!A;F0@<V5V97)A;"!R:6YG<R!T:&%T(&QI;FL@87)O=6YD"B`@("!I="X@
+M(%1H92!P:'ES:6-A;"!S:&%P92!O9B!T:&4@<'5Z>FQE(&ES('9E<GD@9&EF
+M9FEC=6QT('1O"B`@("!D97-C<FEB92!V97)B86QL>2P@8G5T(&AE<F4@:7,@
+M86X@871T96UP="X*"B`@("!4:&ES(&1E<V-R:7!T:6]N(&]F('1H92!P=7IZ
+M;&4@:7,@<')E<V5N=&5D(&%S(&$@<V5T(&]F"B`@("!I;G-T<G5C=&EO;G,@
+M9F]R(&-O;G-T<G5C=&EN9R!T:&4@<'5Z>FQE+B`@4W1A<G0@=VET:"!A(&9L
+M870*("`@('!I96-E(&]F(&ER;VX@86)O=70@,34@8V5N=&EM971E<G,@;&]N
+M9R!B>2!A8F]U="!T=V\*("`@(&-E;G1I;65T97)S('=I9&4N("!$<FEL;"!S
+M:7@@:&]L97,@:6X@=&AE('!I96-E(&]F(&ER;VXN"B`@("!4:')O=6=H(&5A
+M8V@@:&]L92P@<&QA8V4@82!R;V0N("!4:&4@<F]D('-H;W5L9"!H879E(&$*
+M("`@(&1I86UE=&5R('-L:6=H=&QY(&QE<W,@=&AA;B!T:&%T(&]F('1H92!H
+M;VQE('-O('1H870@:70@8V%N"B`@("!M;W9E(&9R965L>2X@($]N92!E;F0@
+M;V8@=&AE(')O9"!I<R!L:6ME('1H92!H96%D(&]F(&$@;F%I;`H@("`@86YD
+M(&ES(&QA<F=E<B!T:&%N('1H92!H;VQE('1O('!R979E;G0@:70@9G)O;2!C
+M;VUI;F<@9G)E92X*("`@(%1H92!O=&AE<B!E;F0@:7,@;&]O<&5D(&%R;W5N
+M9"!A(&UE=&%L(')I;F<@=VET:"!A(&1I86UE=&5R"B`@("!O9B!A8F]U="!F
+M:79E(&-E;G1I;65T97)S+B`@5&AI<R!C;VUP;&5T96QY('!R979E;G1S('1H
+M90H@("`@:7)O;B!R;V0@9G)O;2!S97!A<F%T:6YG(&9R;VT@=&AE(&)A<V4N
+M("!%86-H(')O9"P@:6X*("`@(&%D9&ET:6]N('1O(&=O:6YG('1H<F]U9V@@
+M=&AE(&ER;VX@8F%S92P@9V]E<R!T:')O=6=H('1H90H@("`@<FEN9R!A="!T
+M:&4@96YD(&]F('1H92!R;V0@=&\@:71S(')I9VAT+B`@5&AE(&]N;'D@<F]D
+M(&9R964*("`@(&]F('1H:7,@<F5S=')I8W1I;VX@:7,@=&AE(')I9VAT;6]S
+M="!R;V0N("!7:&%T(&AA<R!B965N"B`@("!D97-C<FEB960@<V\@9F%R(&ES
+M(&]N92!O9B!T:&4@='=O(&-O;7!O;F5N=',@;V8@=&AE('!U>GIL92X*"B`@
+M("!4:&4@;W1H97(@8V]M<&]N96YT(&ES(&%N;W1H97(@:7)O;B!R;V0@<VAA
+M<&5D(&QI:V4@82!5+@H@("`@=&AE(%4@:7,@87,@;&]N9R!F<F]M('1H92!T
+M:7!S('1O('1H92!B87-E(&%S('1H92!O<FEG:6YA;`H@("`@<&EE8V4@;V8@
+M:7)O;B!W:71H('1H92!H;VQE<R!I;B!I="X@(%1H92!E;F1S(&]F('1H92!5
+M(&%R90H@("`@;&]O<&5D(&%R;W5N9"!A;F]T:&5R(')I;F<@;V8@86)O=70@
+M9FEV92!C96YT:6UE=&5R<R!I;@H@("`@9&EA;65T97(N("!);B!T:&4@<'5Z
+M>FQE)W,@:6YI=&EA;"!C;VYF:6=U<F%T:6]N+"!T:&4@52!I<PH@("`@<&QA
+M8V5D('1H<F]U9V@@=&AE(')I;F=S('-O('1H870@:70@:7,@:&5L9"!I;B!P
+M;&%C92!B>2!T:&4*("`@(&ER;VX@<F]D<RX@($EM86=I;F4@<W1A<G1I;F<@
+M=VET:"!T:&4@52!P:65C92!B969O<F4@=&AE"B`@("!I<F]N(&QO;W`@:7,@
+M<&QA8V5D(&%T('1H92!E;F0N("!3;&ED92!T:&4@;&5G<R!O9B!T:&4@50H@
+M("`@=&AR;W5G:"!T:&4@;&]O<',@<V\@=&AA="!T:&4@:7)O;B!R;V1S('-E
+M8W5R:6YG('1H92!L;V]P<PH@("`@=&\@=&AE(&UE=&%L('-T<FEP(&=O('5P
+M('1H92!C96YT97(@;V8@=&AE(%4N("!0;&%C:6YG('1H90H@("`@9FEN86P@
+M<FEN9R!A="!T:&4@96YD<R!O9B!T:&4@52!P<F5V96YT<R!I="!F<F]M(&-O
+M;6EN9R!O=70N"B`@("!4:&4@;V)J96-T(&]F('1H92!P=7IZ;&4@:7,@=&\@
+M9G)E92!T:&4@52US:&%P960@<&EE8V4@9G)O;0H@("`@=&AE(&]T:&5R('!I
+M96-E+@H*("`@(%1H92!F;VQL;W=I;F<@:6QL=7-T<F%T:6]N("AS:61E=V%Y
+M<RD@<VAO=W,@82!T:')E92UR:6YG"B`@("!C87-E(&]F('1H:7,@<'5Z>FQE
+M+B`@268@>6]U(&QO;VL@8V%R969U;&QY+"!Y;W4@8V%N('-E90H@("`@=&AA
+M="!T:&4@9FER<W0@<FEN9R!C;W5L9"!B92!L:69T960@;W9E<B!T:&4@961G
+M92!O9B!T:&4@50H@("`@86YD('-L:60@9&]W;B!T:')O=6=H('1H92!C96YT
+M97(@;V8@=&AE(%4L('1H97)E8GD@9G)E96EN9PH@("`@=&AE(%4@9G)O;2!T
+M:&4@9FER<W0@:7)O;B!R;V0N("!4:&4@<V5C;VYD(')I;F<@8V%N(&%L<V\@
+M8F4*("`@(&9R965D(&EN('1H92!I;FET:6%L(&-O;F9I9W5R871I;VX@<VEN
+M8V4@:70@:7,@86QR96%D>2!O=F5R"B`@("!T:&4@<F]D(&9O<B!T:&4@9FER
+M<W0@<FEN9RX@(%1H92!T:&ER9"!R:6YG(&-A;FYO="!B92!M;W9E9"P*("`@
+M(&AO=V5V97(L('-I;F-E(&ET(&ES(&)L;V-K960@8GD@=&AE(&ER;VX@<F]D
+M('1W;R!W:&EC:"!T:&4*("`@(&9I<G-T(')I;F<@:7,@871T86-H960N("!)
+M9B!T:&4@9FER<W0@9FER<W0@:7,@<F5M;W9E9"P@=&AE;@H@("`@=&AE('1H
+M:7)D(')I;F<@:7,@;F\@;&]N9V5R(&)L;V-K960@8GD@=&AE(&9I<G-T(')I
+M;F<G<R!I<F]N"B`@("!R;V0@86YD(&-A;B!B92!R96UO=F5D(&9R965L>2X@
+M(%1H92!S96-O;F0@<FEN9RP@:&]W979E<@H@("`@8V%N;F]T(&)E(&UO=F5D
+M(&EF('1H92!F:7)S="!R:6YG(&ES(&=O;F4@8F5C875S92!I="!W:6QL"B`@
+M("!T:&5N(&)E(&)L;V-K960@8GD@=&AE(&9I<G-T(')I;F<@:6X@:71S(&YE
+M=R!P;W-I=&EO;@H@("`@;W5T<VED92!O9B!T:&4@52X*"B`@("!(97)E(&ES
+M(&%N(&EL;'5S=')A=&EO;B!O9B!T:&4@=&AR964M<FEN9R!C87-E+B`@5&AE
+M(&)O='1O;0H@("`@;V8@=&AE('!U>GIL92!I<R!O;B!T:&4@;&5F="UH86YD
+M('-I9&4@;V8@=&AE('!A9V4N"@P*"@H)"0D@("`@("`@+R\]/5Q<"@D)"2`@
+M("`@('Q\("`@('Q\"@D)"2`@("`@('Q\("`@('Q\"@D)"2`J*BHJ*GQ\*BH@
+M('Q\"@D)("`@("`@("HJ*B`@("!\?"`J*BI\?`H)"2`@("`@("`J*B`@("`@
+M?'P@("`J?'P*"2`@?%P@("`@("`@("`@("HJ("`@("!\?"`@("!\?"HJ"@D@
+M('P@7"`@("`@("`@("`@*BHJ("`@?'P@("`@?'P@("HJ*@H)("!\("!<("`@
+M("`@("`@("`@*BHJ("!\("`@('Q\("`@(#T]/0H)("!\("`@7"`@("`@("`@
+M("`@("`J*BH@("`@('Q\("`O+R`J(%Q<"@D@('P@("`@7"`@("`@("`@("`@
+M("`@*BHJ("`@?'P@?'P@*BH@('Q\"@D@('P@("`@('P@("`@("`@("`@("`@
+M?"`J*BHJ*BHJ*BHJ("`@('Q\"@D@('P@("`@('P@("`@("`@("`@("`@?'P@
+M("`@?'P@?'P@("`@('Q\"@D@('P@("`@('P@("`@("`@("`@("`@?'P@("`@
+M?'P@?'P@("`@('Q\"@D@('P@("`@('P@("`@("`@("HJ*BHJ?'PJ*B`@?'P@
+M(%Q<("`@('Q\"B`@("`@("!\("!\('Q<("!\("`@("`@*BHJ("`@('Q\("HJ
+M*GQ\("`@("`@("!\?`H@("`@("`@?#T]?"!\/3T]/3T]/3T]+2HJ+3T]/2U\
+M?"T]/3T]/3T]/3T]/3TO+PH@("`@("`@?#T]?"!\/3T]/3T]/3T]+2HJ+3T]
+M/2U\?"T]/3T]/3T]/3T]/2\O"B`@("`@("!\("!\("!<?"!\("`@("`@("HJ
+M*B`@('Q\("`@('Q\("`J*BH*"2`@?"`@("`@?"`@("`@("`@("HJ*B!\?"`@
+M("!\?"`@("`]/3T*"2`@?"`@("`@?"`@("`@("`@("`@*BHJ?"`@("!\?"`@
+M+R\@*B!<7`H)("!\("`@("!\("`@("`@("`@("`@("HJ*B`@('Q\('Q\("HJ
+M("!\?`H)("!\("`@("!\("`@("`@("`@("`@('Q\*BHJ*BHJ*BHJ*B`@("!\
+M?`H)("!\("`@("!\("`@("`@("`@("`@('Q\("`@('Q\('Q\("`@("!\?`H)
+M("!\("`@("!\("`@("`@("`J*BHJ*GQ\*BH@('Q\("!<7"`@("!\?`H@("`@
+M("`@?"`@?"!\7"`@?"`@("`@("HJ*B`@("!\?"`J*BI\?"`@("`@("`@?'P*
+M("`@("`@('P]/7P@?#T]/3T]/3T]/2TJ*BT]/3TM?'PM/3T]/3T]/3T]/3T]
+M+R\*("`@("`@('P]/7P@?#T]/3T]/3T]/2TJ*BT]/3TM?'PM/3T]/3T]/3T]
+M/3TO+PH@("`@("`@?"`@?"`@7'P@?"`@("`@("`J*BH@("!\?"`@("!\?"`@
+M*BHJ"@D@('P@("`@('P@("`@("`@("`J*BH@?'P@("`@?'P@("`@/3T]"@D@
+M('P@("`@('P@("`@("`@("`@("HJ*GP@("`@?'P@("\O("H@7%P*"2`@?"`@
+M("`@?"`@("`@("`@("`@("`J*BH@("!\?"!\?"`J*B`@?'P*"2`@?"`@("`@
+M?"`@("`@("`@("`@("!\?"HJ*BHJ*BHJ*BH@("`@?'P*"2`@?"`@("`@?"`@
+M("`@("`@("`@("!\?"`@("!\?"!\?"`@("`@?'P*"2`@?"`@("`@?"`@("`@
+M("`@("`@("!\?"`@("!\?"!\?"`@("`@?'P*("`@("`@('P@('P@("`@('P@
+M("`@("`@("`@("`@?'P@("`@?'P@(%Q<("`@('Q\"B`@("`@("!\("!\('Q<
+M("!\("`@("`@("`@("`@('Q\("`@('Q\("`@("`@("!\?`H@("`@("`@?#T]
+M?"!\/3T]/3T]/3T]/3T]/3T]/2U\?"T]/3T]/3T]/3T]/3TO+PH@("`@("`@
+M?#T]?"!\/3T]/3T]/3T]/3T]/3T]/2U\?"T]/3T]/3T]/3T]/2\O"B`@("`@
+M("!\("!\("!<?"!\("`@("`@("`@("`@('Q\("`@('Q\"@D@('P@("`@('P@
+M("`@("`@("`@("`@?'P@("`@?'P*"2`@?"`@("`@?"`@("`@("`@("`@("!\
+M?"`@("!\?`H)("!\("`@("!\("`@("`@("`@("`@('Q\("`@('Q\"@D@(%P@
+M("`@('P@("`@("`@("`@("`@?'P@("`@?'P*"2`@(%P@("`@?"`@("`@("`@
+M("`@("`@7%P@("!\?`H)("`@(%P@("!\("`@("`@("`@("`@("`@7%P@('Q\
+M"@D@("`@(%P@('P@("`@("`@("`@("`@("`@7%P@?'P*"2`@("`@(%P@?"`@
+M("`@("`@("`@("`@("`@7%Q\?`H)("`@("`@(%Q\("`@("`@("`@("`@("`@
+M("`@7'Q\"@P*("`@(%1H:7,@<'5Z>FQE('1A:V5S(&]T:&5R(&9O<FUS(&%S
+M('=E;&PN("!/;F4@<W5C:"!P=7IZ;&4*("`@(&-O;G-I<W1S(&]F(&]N92!P
+M;&%S=&EC('!I96-E('1H870@96YC87-E<R!A;F]T:&5R('!I96-E"B`@("!T
+M:&%T(&-A;B!S;&ED92!I;B!A;F0@;W5T(&]F(&ET+B`@5&AE(&UO=F5M96YT
+M(&]F('1H90H@("`@<VUA;&QE<B!P:65C92!I<R!R97-T<FEC=&5D(&)Y(&1I
+M<V-S('1H870L('=H96X@='5R;F5D('1O"B`@("!O;F4@86YG;&4L(&QO8VL@
+M=&AE('-M86QL97(@<&EE8V4@:6YS:61E('1H92!L87)G97(@;VYE(&%N9"P*
+M("`@('=H96X@='5R;F5D('1H92!O=&AE<B!W87DL(&%L;&]W(&ET('1O(&UO
+M=F4N("!4:&ES('!U>GIL92!I<PH@("`@87,@9&EF9FEC=6QT('1O(&1E<V-R
+M:6)E(&%S('1H92!F:7)S="!A;F0L('-I;F-E($D@9&]N)W0*("`@(&AA=F4@
+M;VYE(&EN(&9R;VYT(&]F(&UE+"!)('=I;&P@;F]T(&%T=&5M<'0@=&\@9&5S
+M8W)I8F4@:70N"B`@("!4:&4@;V)J96-T(&]F('1H:7,@<'5Z>FQE(&ES('1O
+M(&9R964@=&AE('-M86QL97(@<&EE8V4@9G)O;0H@("`@=&AE(&QA<F=E<B!O
+M;F4N("!4:&4@;W1H97(@<'5Z>FQE('1H870@:7,@;&EK92!T:&ES(&]N90H@
+M("`@8V]N<VES=',@;V8@82!C>6QI;F1E<B!W:71H(')O9',@<')O=')U9&EN
+M9R!F<F]M('1H92!T;W`N"B`@("!4:&4@<F]D<R!C86X@8F4@<VQI9"!F<F]M
+M('1H92!C96YT97(@=&\@=&AE(&5D9V4@;V8@=&AE"B`@("!C>6QI;F1E<B!C
+M;VYS=')A:6YE9"!B>2!A('-E<FEE<R!O9B!D:7-C<R!I;B!T:&4@8V5N=&5R
+M+@H@("`@5&AE(&1I<V-S(&AA=F4@8W5T<R!I;B!T:&5M('1H870@86QL;W<@
+M<V]M92!R;V1S('1O(&UO=F4@86YD"B`@("!F;W)C92!O=&AE<G,@:6X@;VYE
+M('!L86-E(&)A<V5D(&]N('1H92!R96QA=&EV92!R;W1A=&EO;G,@;V8*("`@
+M('1H92!D:7-C<RX@(%1H92!O8FIE8W0@:&5R92!I<R!T;R!M;W9E(&%L;"!T
+M:&4@<F]D<R!F<F]M('1H90H@("`@:6YS:61E('1O('1H92!O=71S:61E+@H*
+M("`@(%=H870@;6%K97,@=&AE<V4@<'5Z>FQE<R!S:6UI;&%R(&ES('1H870@
+M=&AE('!H>7-I8V%L('-H87!E<PH@("`@;V8@=&AE('!U>GIL97,@<'5T('1H
+M92!S86UE(')E<W1R:6-T:6]N<R!O;B!T:&4@;6]V96UE;G0@;V8*("`@('1H
+M92!P:65C97,N("!3<&5C:69I8V%L;'DL('1H97)E(&ES(&%L=V%Y<R!O;F4@
+M<&EE8V4@=&AA="!I<PH@("`@9G)E92!T;R!M;W9E+B`@5&AE(&]N;'D@;W1H
+M97(@<&EE8V4@=&AA="!I<R!F<F5E('1O(&UO=F4@:7,*("`@('1H92!S96-O
+M;F0@;VYE('1H870@:7,@<W1I;&P@871T86-H960@=&\@=&AE(&)A<V4@:70@
+M:7,*("`@('1R>6EN9R!T;R!B92!F<F5E9"!F<F]M+B`@26X@=&AE(&-A<V4@
+M;V8@=&AE(&]R:6=I;F%L"B`@("!P=7IZ;&4L(&-O;G-I9&5R('1H92!R:6YG
+M<R!N=6UB97)E9"!F<F]M(#$@=&\@-B!W:71H(')I;F<@,0H@("`@8F5I;F<@
+M=&AE(&]N92!A="!T:&4@8VQO<V5D('-E;F0@;V8@=&AE(%4N("!2:6YG(#$@
+M8V%N"B`@("!A;'=A>7,@8F4@<F5M;W9E9"!F<F]M(&]R(&%D9&5D('1O('1H
+M92!5+B`@26X@=&AE(&EN:71I86P*("`@('-T871E+"!W:&5N(&%L;"!R:6YG
+M<R!A<F4@87)O=6YD('1H92!5+"!R:6YG(#(@:7,@=&AE(&]T:&5R"B`@("!O
+M;F4@=&AA="!C86X@8F4@;6]V960@8F5C875S92!I="!I<R!S96-O;F0N("!)
+M9B!R:6YG(#$@:7,*("`@(')E;6]V960L('1H96X@;VYL>2!T=V\@;W!E<F%T
+M:6]N<R!A<F4@<&]S<VEB;&4Z('1H90H@("`@<F5S=&]R871I;VX@;V8@<FEN
+M9R`Q(&%N9"!T:&4@<F5M;W9A;"!O9B!R:6YG(#,N("!4:&ES(&ES"B`@("!B
+M96-A=7-E(')I;F<@,2!I<R!A;'=A>7,@;6]V86)L92P@86YD(')I;F<@,R!I
+M<R!C=7)R96YT;'D*("`@('1H92!S96-O;F0@<FEN9R!S=&EL;"!A='1A8VAE
+M9"!T;R!T:&4@52X@(%1H:7,@8V]N<W1R86EN=`H@("`@;&5A9',@=&\@82!R
+M96-U<G-I=F4@<V]L=71I;VX@=&\@=&AE('!U>GIL92X@($QI:V4@=&AE"B`@
+M("!4;W=E<G,@;V8@2&%N;VDL('1H92!N=6UB97(@;V8@<W1E<',@=&\@<V]L
+M=F4@=&AI<R!P=7IZ;&4@:7,*("`@(&5X<&]N96YT:6%L(&EN('1H92!N=6UB
+-97(@;V8@<FEN9W,N"@``
+`
+end
+---build---
+begin 444 build
+M(R$O8FEN+W-H"B,@3D]413H@8V,@;75S="!B92!A;B!!3E-)+6-O;7!L:6%N
+?="!#(&-O;7!I;&5R"F-C("UO('!R;V<@<')O9RYC"@``
+`
+end
+---program---
+begin 444 prog.c
+M"@H@("`@("`@("`@("`@("`@("`@("!S=&%T:6,@<VEG;F5D(&-H87(@85M=
+M(#T@>S!X-CDL"B`@("`@("`@("`@("`@("`@("`Q,3`L(#$Q."P@.3<L(#$P
+M."P@,3`U+"`@,'@V-"P@,2TQ+`H@("`@("`@("`@("`@("`@(#!X-F0L(#$Q
+M,2P@,3$X+"`@,3`Q+"`Q/#PQ/#PQ/#PQ/#PQ/#PQ+`H@("`@("`@("`@("`@
+M("`@(#$Q-"P@(#$P-2P@,'@V92P@(#$P,RP@(#,R+"`G;R<O,RP@,3`P+`H@
+M("`@("`@("`@("`@("`@(#,R+"`Q,#(L(#$Q-"P@,3$Q+"`@,'@V9"P@,S(L
+M(#$Q-2P@,3$V+`H@("`@("`@("`@("`@("`@(#DW+"`Q,#`M,#`Q+"`Q,#<L
+M(#,R+#,W+"`R*B<R)RP@)T`G/CXQ+`H@("`@("`@("`@("`@("`@(#$Q-BP@
+M)R4G("L@)R4G("L@)R4G+"=W)RTG5R<L,3$U+"`P>#<T+`H@("`@("`@("`@
+M("`@("`@(#DW+"`S*B<A)RP@,3`W+"`G<2<@+2`G42<L(#,W+"`Q,"HG7&XG
+M+`H@("`@("`@("`@("`@("`@(#$P+"`P?2P@*B!B(#T@82`K("@Q/#PQ/#PQ
+M/#PQ*2P@*B!W+"!X+`H@("`@("`@("`@("`@("`@("IQ+"!C+"!R.R!I;G0@
+M;6%I;BAI;G0@9"P@8VAA<B`J92!;72D@>PH@("`@("`@("`@("`@("`@(')E
+M='5R;B!Q(#T@*'-I9VYE9"!C:&%R("HI*&4K,2LQ*2P@*'(@/0H@("`@("`@
+M("`@("`@("`@(&5;,%T@)B8@95LQ72`_(#`@.B`P("H@<'5T<R`H82D@*R`Q
+M*2!\?`H@("`@("`@("`@("`@("`@("AR(#T@95LQ/#PQ72`F)B!D("$](#$@
+M/#PQ("8F(#`@*B!P=71S*`H@("`@("`@("`@("`@("`@(&$I("L@,2D@?'P@
+M95LQ+2`M,5T@?'P@("AR(#T@871O:2AE6S%=*0H@("`@("`@("`@("`@("`@
+M(#P@+3`R,#`@?'P@871O:2`H92!;,5TI(#X@,'@W9B!\?"`H('@@/0H@("`@
+M("`@("`@("`@("`@(&%T;VDH(&5;,5T@*2`I(#T](#`@/R`P("H@<'5T<RAA
+M*2`K(#$@.@H@("`@("`@("`@("`@("`@(#`I('Q\(&4@6S$M("TQ72!\?"`H
+M>"T@+7@@/B`Q+3$@/R`H<5LP70H@("`@("`@("`@("`@("`@("`@/2!X+"!Q
+M6S%=(#T@<5LS72`](#$L('%;,ET@/2`R*2`Z("@*("`@("`@("`@("`@("`@
+M("`@("`@;65M<V5T("@@=R`]("@@<VEG;F5D("!C:&%R("H@*0H*"@H*"@H*
+M("`@("`@("`@("`@("`@("`@("`@;6%L;&]C*"UX*2P@)S$G+"`M>"DL('!U
+M=',@*'<I+`H@("`@("`@("`@("`@("`@("`@<5LP72`]('@L('%;,5T@/2`G
+M,"<L('%;,ET@/2!Q6S-=(#T*("`@("`@("`@("`@("`@("`P*2DL('(@?'P@
+M*'%;,UT@/R`H8R`](#8@+2!Q6S%=("T@<5LR72P*("`@("`@("`@("`@("`@
+M("`H<5LP72`A/2`Q*2`_('%;,%TM+2`L(&0@/2!Q6S)=+"!Q6S)=(#T*("`@
+M("`@("`@("`@("`@("!C+"!M86EN*#(L(&4I+"!C(#T@<5LR72P@<5LR72`]
+M(&0L('%;,%T*("`@("`@("`@("`@("`@("`K*R`Z(#`L('!R:6YT9BAB+"!Q
+M6S!=+"!Q6S%=+"!Q6S)=*2P@*'$*("`@("`@("`@("`@("`@("!;,%T@(3T@
+M,2D@/R!Q6S!=+2TL(&0@/2!Q6S%=+'%;,5T@/2!C("P*("`@("`@("`@("`@
+M("`@("!M86EN*#(L(&4I+"!C(#T@<5LQ72P@<5LQ72`](&0L('%;,%T@*RL*
+M("`@("`@("`@("`@("`@("`Z(#`I(#H@+2`Q("T@<5LP72`M(#$@/3T@,"`_
+M("AW6RT@>"`M(#$*("`@("`@("`@("`@("`@("`M("AQ6S%=("8@,2!>(#$I
+M72`]('%;,5TL('!U=',@*'<I+"!W(%L*("`@("`@("`@("`@("`@("`M('@@
+M+2`Q("T@*'%;,5T@)B`Q*5T@/2!Q6S%=+"!P=71S*'<I("D*("`@("`@("`@
+M("`@("`@("`Z("T@,2`M('%;,%T@/3T@,"`_("`H=ULM('@@+2`Q72`]('%;
+M(#$*("`@("`@("`@("`@("`@("`@(%TL('!U=',H=RDI(#H@*'%;,%T@*ST@
+M,2`K("@@<5LQ72`F(#$*("`@("`@("`@("`@("`@("`@("`@("!>(#$I+"!M
+M86EN*#(L(&4I+"!Q6S!=("T](#$@*R`H('$*("`@("`@("`@("`@("`@("`@
+M("`@("`@("`@("!;,5T@)B`Q(%X@,2DL('%;,5T@)B`Q(#\@*'$*("`@("`@
+M("`@("`@("`@("`@("`@("`@("`@("`@("!;,%TK/3$K,2P@('%;,5U>/3$L
+M(&UA:6X*("`@("`@("`@("`@("`@("`@("`@("`@("`@("`@("`H,BP@92DL
+M('%;,5U>/3$L('%;,%TM/3$*("`@("`@("`@("`@("`@("`@("`@("`@("`@
+M("`@("`K,2D@.B`P+"!W6W%;,%T@+2!X72`]('$*("`@("`@("`@("`@("`@
+M("`@("`@("`@("`@("`@(%LQ72P@<'5T<RAW*2P@<5LQ72`F(#$@/PH@("`@
+M("`@("`@("`@("`@("`@("`@("`@("`@(#`@.B`H<5LP72L],2LQ+"!Q6S%=
+M7CTQ+`H@("`@("`@("`@("`@("`@("`@("`@("`@("!M86EN("@R+"!E*2P@
+M<5LQ75X],2P@<0H@("`@("`@("`@("`@("`@("`@("`@("`@6S!=+3TQ*S$I
+M+"!Q6S!=("L](#$@*PH@("`@("`@("`@("`@("`@("`@("`@*'%;,5T@)B`Q
+M*2QM86EN*#(L92D*("`@("`@("`@("`@("`@("`@+"!Q6S!=("T](#$@*R`H
+E<5LQ70H@("`@("`@("`@("`@("`@("8@,2D@*2`I+"!R.R!]"@``
+`
+end
+---end---
