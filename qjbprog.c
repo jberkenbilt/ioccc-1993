@@ -1,21 +1,20 @@
 /* 
- * $Id: qjbprog.c,v 1.2 1993-03-08 04:12:01 qjb Exp $
+ * $Id: qjbprog.c,v 1.3 1993-03-08 04:29:27 qjb Exp $
  * $Source: /tmp/ioccc-1993/ioccc-1993/qjbprog.c,v $
  * $Author: qjb $
  *
  * This program sovles the "patience puzzle" also known as the Chinese
  * ring puzzle and other names.
+ *
+ * Obfuscation ideas:  Implement the whole program as main.
+ * modify argv[1]; use argv[2] as sign bit.
+ * have a = b == c somewhere
+ * use macros to manipulate bits
  */
 
 #if !defined(lint) && !defined(CODECENTER) || defined(RCS_HDRS)
-static char *rcsid = "$Id: qjbprog.c,v 1.2 1993-03-08 04:12:01 qjb Exp $";
+static char *rcsid = "$Id: qjbprog.c,v 1.3 1993-03-08 04:29:27 qjb Exp $";
 #endif /* !lint && !CODECENTER || RCS_HDRS */
-
-#ifdef abs
-#undef abs
-#endif
-
-#define abs(x) (((x) < 0) ? (-(x)) : (x))
 
 static char *bits;
 static int len;
