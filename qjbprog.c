@@ -22,32 +22,26 @@ void move_stack(int n, int a, int b, int c)
     }
 }
 
-
-void p_addrem(int n, char c)
-{
-    puts(bits, bits[len - n] = c);
-}
-
 void addrem(int n, char c)
 {
-    if (- 1 + n - 1 > 0)
+    switch (- 1 + n - 1)
     {
+      case 0:
+	puts(bits, bits[len - (1 + ((c & 1) ^ 1))] = c);
+	puts(bits, bits[len - (1 + (c & 1))] = c);
+	break;
+      case -1:
+	puts(bits, bits[len - 1] = c);
+	break;
+      default:
 	addrem(n - 1 - ((c & 1) ^ 1), c);
 	(c & 1) ? addrem(n - 1 - 1, c ^ 1):0;
-	p_addrem(n, c);
+	puts(bits, bits[len - n] = c);
 	(c & 1) ?0: addrem(n - 1 - 1, c ^ 1);
 	addrem(n - 1 - (c & 1), c);
     }
-    else if (- 1 + n - 1 == 0)
-    {
-	p_addrem(1 + ((c & 1) ^ 1), c);
-	p_addrem(1 + (c & 1), c);
-    }
-    else if (- 1 + n - 1 == -1)
-    {
-	p_addrem(1, c);
-    }
 }
+
 
 int main(int argc, char *argv[])
 {
