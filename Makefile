@@ -1,3 +1,4 @@
+CC=gcc
 CFLAGS = -g
 
 qjbprog: qjbprog.o
