@@ -1,12 +1,12 @@
 /* 
- * $Id: qjbprog.c,v 1.4 1993-03-13 13:20:09 qjb Exp $
+ * $Id: qjbprog.c,v 1.5 1993-03-13 13:29:49 qjb Exp $
  * $Source: /tmp/ioccc-1993/ioccc-1993/qjbprog.c,v $
  * $Author: qjb $
  *
  * This program takes a single argument.  If the argument is positive,
- * it sovles the case of the "patience puzzle", also known as the
- * Chinese ring puzzle and other names, with argv[1] rings.  If the
- * argument is negative, it solves the tower of hanoi with -argv[1]
+ * it solves the tower of hanoi with argv[1] rings.  If the argument
+ * is positive, it sovles the case of the "patience puzzle", also
+ * known as the Chinese ring puzzle and other names, with -argv[1]
  * rings.
  *
  * Obfuscation ideas:  Implement the whole program as main.
@@ -17,7 +17,7 @@
  */
 
 #if !defined(lint) && !defined(CODECENTER) || defined(RCS_HDRS)
-static char *rcsid = "$Id: qjbprog.c,v 1.4 1993-03-13 13:20:09 qjb Exp $";
+static char *rcsid = "$Id: qjbprog.c,v 1.5 1993-03-13 13:29:49 qjb Exp $";
 #endif /* !lint && !CODECENTER || RCS_HDRS */
 
 extern void *malloc(int);
@@ -108,14 +108,15 @@ int main(int argc, char *argv[])
     len = atoi(argv[1]);
     if (len > 0)
     {
+	move_stack(len, 1, 2, 3);
+    }
+    else if (len < 0)
+    {
+	len = -len;
 	bits = malloc(len);
 	memset(bits, '1', len);
 	puts(bits);
 	rem(len);
-    }
-    else if (len < 0)
-    {
-	move_stack(-len, 1, 2, 3);
     }
     else
 	return 1, printf("invalid\n");
