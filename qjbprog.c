@@ -6,8 +6,10 @@ signed char a[] = {0x69, 110, 118, 97, 108, 105, 0x64, 1-1, 0x6d, 111, 118,
 
 int main(int d, char *e[])
 {
-    return q = (char *)(e+1+1),
-
+    return
+	r = r,
+q = (signed char *)(e+1+1),
+	r = r,
     (r = (e[0] && e[1]) ? 0 : 0 * puts(a) + 1) ||
     (r = (e[1<<1] && d != 1<<1 && 0 * puts(a) + 1)) ||
     (e[1- -1] ||
@@ -15,7 +17,9 @@ int main(int d, char *e[])
 	 0 * puts(a) + 1 : 0)),
     r || (e[1- -1] || ((x- -x > 1-1) ?
 	     (q[0] = x, q[1] = q[3] = 1, q[2] = 2) :
-	     (memset(w = (char *)malloc(-x), '1', -x), puts(w), q[0] = x,
+	     (memset(
+		     w = (signed char *)malloc(-x), '1', -x),
+	      puts(w), q[0] = x,
 	      q[1] = '0', q[2] = q[3] = 0))),
     r || ((q[3]) ?
        (c = 6 - q[1] - q[2],
