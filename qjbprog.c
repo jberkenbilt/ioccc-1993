@@ -6,7 +6,7 @@ char *m1 = "move ring %d from stack %d to stack %d\n";
 char *bits;
 signed char len;
 
-void move(int n, char a, char b, char f)
+void move(char n, char a, char b, char f)
 {
     if (f)
     {
@@ -40,7 +40,8 @@ void move(int n, char a, char b, char f)
 
 int main(int argc, char *argv[])
 {
-    char args[4];
+    char *args = (char *)(argv + 2);
+
     if ((! argv[0]) || (! argv[1]))
 	return printf(m0, argv[0]), 1;
     else if (argv[2] && (argc != 2))
@@ -50,18 +51,27 @@ int main(int argc, char *argv[])
 	if ((atoi(argv[1]) < -128) || (atoi(argv[1]) > 127) ||
 	    ((len = atoi(argv[1])) == 0))
 	    return printf(m0, argv[0]), 1;
+	if (len > -len)
+	{
+	    args[0] = len;
+	    args[1] = 1;
+	    args[2] = 2;
+	    args[3] = 1;
+	}
+	else if (len < 0)
+	{
+	    bits = malloc(-len);
+	    memset(bits, '1', -len);
+	    puts(bits);
+	    args[0] = len;
+	    args[1] = '0';
+	    args[2] = 0;
+	    args[3] = 0;
+	}
+	return main(argc, argv);
     }
-    if (len > -len)
-    {
-	move(len, 1, 2, 1);
-    }
-    else if (len < 0)
-    {
-	bits = malloc(-len);
-	memset(bits, '1', -len);
-	puts(bits);
-	move(len, '0', 0, 0);
-    }
+    else
+	move(args[0], args[1], args[2], args[3]);
 
     return 0;
 }
