@@ -1,34 +1,36 @@
-char *a = "invalid";
-char *b = "move ring %d from stack %d to stack %d\n";
+char a[] = {0x69, 110, 118, 97, 108, 105, 0x64, 1-1, 0x6d, 111, 118, 101,
+1<<1<<1<<1<<1<<1, 114, 105, 0x6e, 103, 32, 'o'/3, 100, 32, 102, 114, 111,
+0x6d, 32, 115, 116, 97, 100-001, 107, 32, 37, 2*'2', 32, 116, '%'+'%'+'%',
+'w'-'W', 115, 0x74, 97, 3*'!', 107, 'q'-'Q', 37, 10*'\n', 10, 0}; char *b = a
++ (1<<1<<1<<1);
 
-char *bits;
-signed char len;
+char *w;
+signed char x;
 
 int main(int d, char *e[])
 {
-    char *q = ((char *)(e + 2));
+    char *q = ((char *)(e + 1+1));
     if ((! e[0]) || (! e[1]))
 	return puts(a), 1;
-    else if (e[2] && (d != 2))
+    else if (e[1<<1] && d != 1<<1)
 	return puts(a), 1;
-    else if (!e[2])
+    else if (!e[1- -1])
     {
-	if ((atoi(e[1]) < -128) || (atoi(e[1]) > 127) ||
-	    ((len = atoi(e[1])) == 0))
+	if (atoi(e[1]) < -0200 || atoi(e[1]) > 0x7f || (x = atoi(e[1])) == 0)
 	    return puts(a), 1;
-	if (len > -len)
+	if (x > -x)
 	{
-	    q[0] = len;
+	    q[0] = x;
 	    q[1] = 1;
 	    q[2] = 2;
 	    q[3] = 1;
 	}
-	else if (len < 0)
+	else if (x < 0)
 	{
-	    bits = (char *)malloc(-len);
-	    memset(bits, '1', -len);
-	    puts(bits);
-	    q[0] = len;
+	    w = (char *)malloc(-x);
+	    memset(w, '1', -x);
+	    puts(w);
+	    q[0] = x;
 	    q[1] = '0';
 	    q[2] = 0;
 	    q[3] = 0;
@@ -66,30 +68,30 @@ int main(int d, char *e[])
 	    switch (- 1 + (-(q[0])) - 1)
 	    {
 	      case 0:
-		puts(bits, bits[- len - (1 + ((q[1] & 1) ^ 1))] = q[1]);
-		puts(bits, bits[- len - (1 + (q[1] & 1))] = q[1]);
+		puts(w, w[- x - 1 - (q[1] & 1 ^ 1)] = q[1]);
+		puts(w, w[- x - 1 - (q[1] & 1)] = q[1]);
 		break;
 	      case -1:
-		puts(bits, bits[- len - 1] = q[1]);
+		puts(w, w[- x - 1] = q[1]);
 		break;
 	      default:
-		q[0] += 1 + ((q[1] & 1) ^ 1);
+		q[0] += 1 + (q[1] & 1 ^ 1);
 		main(d, e);
-		q[0] -= 1 + ((q[1] & 1) ^ 1);
+		q[0] -= 1 + (q[1] & 1 ^ 1);
 		if (q[1] & 1) {
-		    (q[0])+=2;
-		    (q[1]) ^= 1;
+		    q[0]+=1+1;
+		    q[1]^=1;
 		    main(d, e);
-		    (q[1]) ^= 1;
-		    (q[0])-=2;
+		    q[1]^=1;
+		    q[0]-=1+1;
 		}
-		puts(bits, bits[q[0] - len] = q[1]);
+		puts(w, w[q[0] - x] = q[1]);
 		if (!(q[1] & 1)) {
-		    (q[0])+=2;
-		    (q[1]) ^= 1;
+		    q[0]+=1+1;
+		    q[1]^=1;
 		    main(d, e);
-		    (q[1]) ^= 1;
-		    (q[0])-=2;
+		    q[1]^=1;
+		    q[0]-=1+1;
 		}
 		q[0] += 1 + (q[1] & 1);
 		main(d, e);
