@@ -1,0 +1,3 @@
+#!/bin/sh
+# NOTE: cc must be an ANSI-compliant C compiler
+cc -o prog prog.c
