@@ -30,42 +30,23 @@ void p_addrem(int n, char c)
 
 void addrem(int n, char c)
 {
-    if (n > 2)
+    if (- 1 + n - 1 > 0)
     {
-	if (c == '1')
-	{
-	    addrem(n - 1, '1');
-	    addrem(n - 2, '0');
-	    p_addrem(n, c);
-	    addrem(n - 2, '1');
-	}
-	else
-	{
-	    addrem(n - 2, '0');
-	    p_addrem(n, c);
-	    addrem(n - 2, '1');
-	    addrem(n - 1, '0');
-	}
+	addrem(n - 1 - ((c & 1) ^ 1), c);
+	(c & 1) ? addrem(n - 1 - 1, c ^ 1):0;
+	p_addrem(n, c);
+	(c & 1) ?0: addrem(n - 1 - 1, c ^ 1);
+	addrem(n - 1 - (c & 1), c);
     }
-    else if (n == 2)
+    else if (- 1 + n - 1 == 0)
     {
-	if (c == '1')
-	{
-	    p_addrem(1, c);
-	    p_addrem(2, c);
-	}
-	else
-	{
-	    p_addrem(2, c);
-	    p_addrem(1, c);
-	}
+	p_addrem(1 + ((c & 1) ^ 1), c);
+	p_addrem(1 + (c & 1), c);
     }
-    else if (n == 1)
+    else if (- 1 + n - 1 == -1)
     {
 	p_addrem(1, c);
     }
-    else
-	puts(m);
 }
 
 int main(int argc, char *argv[])
