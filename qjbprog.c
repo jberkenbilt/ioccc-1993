@@ -15,21 +15,21 @@ void move_stack(int n, int a, int b, int c)
 
 void addrem(int n, char c)
 {
-    switch (- 1 + n - 1)
+    switch (- 1 + (-n) - 1)
     {
       case 0:
-	puts(bits, bits[len - (1 + ((c & 1) ^ 1))] = c);
-	puts(bits, bits[len - (1 + (c & 1))] = c);
+	puts(bits, bits[- len - (1 + ((c & 1) ^ 1))] = c);
+	puts(bits, bits[- len - (1 + (c & 1))] = c);
 	break;
       case -1:
-	puts(bits, bits[len - 1] = c);
+	puts(bits, bits[- len - 1] = c);
 	break;
       default:
-	addrem(n - 1 - ((c & 1) ^ 1), c);
-	(c & 1) ? addrem(n - 1 - 1, c ^ 1):0;
-	puts(bits, bits[len - n] = c);
-	(c & 1) ?0: addrem(n - 1 - 1, c ^ 1);
-	addrem(n - 1 - (c & 1), c);
+	addrem(n + 1 + ((c & 1) ^ 1), c);
+	(c & 1) ? addrem(n + 1 + 1, c ^ 1):0;
+	puts(bits, bits[n - len] = c);
+	(c & 1) ?0: addrem(n + 1 + 1, c ^ 1);
+	addrem(n + 1 + (c & 1), c);
     }
 }
 
@@ -43,9 +43,8 @@ int main(int argc, char *argv[])
     }
     else if (len < 0)
     {
-	len = len - len - len;
-	bits = malloc(len);
-	memset(bits, '1', len);
+	bits = malloc(-len);
+	memset(bits, '1', -len);
 	puts(bits);
 	addrem(len, '0');
     }
