@@ -8,49 +8,43 @@ signed char len;
 
 void move(char *args)
 {
-    char *n, *a, *b, *f;
-    n = args;
-    a = args + 1;
-    b = args + 2;
-    f = args + 3;
-
-    if (*f)
+    if (args[3])
     {
 	char c, t;
-	c = (*a + *b == 3) ? 3 : (*a + *b == 4) ? 2 : 1;
-	if (*n != 1) {
-	    (*n)--; t = *b; *b = c; move(args); c = *b; *b = t; (*n)++;
+	c = (args[1] + args[2] == 3) ? 3 : (args[1] + args[2] == 4) ? 2 : 1;
+	if (args[0] != 1) {
+	    (args[0])--; t = args[2]; args[2] = c; move(args); c = args[2]; args[2] = t; (args[0])++;
 	}
-	printf(m1, *n, *a, *b);
-	if (*n != 1) {
-	    (*n)--; t = *a; *a = c; move(args); c = *a; *a = t; (*n)++;
+	printf(m1, args[0], args[1], args[2]);
+	if (args[0] != 1) {
+	    (args[0])--; t = args[1]; args[1] = c; move(args); c = args[1]; args[1] = t; (args[0])++;
 	}
     }
     else
     {
-	switch (- 1 + (-(*n)) - 1)
+	switch (- 1 + (-(args[0])) - 1)
 	{
 	  case 0:
-	    puts(bits, bits[- len - (1 + ((*a & 1) ^ 1))] = *a);
-	    puts(bits, bits[- len - (1 + (*a & 1))] = *a);
+	    puts(bits, bits[- len - (1 + ((args[1] & 1) ^ 1))] = args[1]);
+	    puts(bits, bits[- len - (1 + (args[1] & 1))] = args[1]);
 	    break;
 	  case -1:
-	    puts(bits, bits[- len - 1] = *a);
+	    puts(bits, bits[- len - 1] = args[1]);
 	    break;
 	  default:
-	    *n += 1 + ((*a & 1) ^ 1);
+	    args[0] += 1 + ((args[1] & 1) ^ 1);
 	    move(args);
-	    *n -= 1 + ((*a & 1) ^ 1);
-	    if (*a & 1) {
-		(*n)++; (*n)++; (*a) ^= 1; move(args); (*a) ^= 1; (*n)--; (*n)--;
+	    args[0] -= 1 + ((args[1] & 1) ^ 1);
+	    if (args[1] & 1) {
+		(args[0])+=2; (args[1]) ^= 1; move(args); (args[1]) ^= 1; (args[0])-=2;
 	    }
-	    puts(bits, bits[*n - len] = *a);
-	    if (!(*a & 1)) {
-		(*n)++; (*n)++; (*a) ^= 1; move(args); (*a) ^= 1; (*n)--; (*n)--;
+	    puts(bits, bits[args[0] - len] = args[1]);
+	    if (!(args[1] & 1)) {
+		(args[0])+=2; (args[1]) ^= 1; move(args); (args[1]) ^= 1; (args[0])-=2;
 	    }
-	    *n += 1 + (*a & 1);
+	    args[0] += 1 + (args[1] & 1);
 	    move(args);
-	    *n -= 1 + (*a & 1);
+	    args[0] -= 1 + (args[1] & 1);
 	}
     }
 }
