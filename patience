@@ -30,53 +30,71 @@
     The object of the puzzle is to free the U-shaped piece from
     the other piece.
 
-    The following illustration is NOT exactly like the puzzle,
-    but it will serve to clarify the puzzle's construction.  In
-    this picture, you can see that the first ring could be
-    lifted over the edge of the U and slide down through the
-    center of the U, thereby freeing the U from the first iron
-    rod and making the second ring free to move.  In the
-    configuration shown, the second ring couldn't move because
-    it would be blocked by the first ring.  The Patience puzzle
-    is constructed basically this way except that the second
-    ring goes over the iron rod the first ring is attached to,
-    the third ring goes over the second ring's rod, etc.  Thus,
-    in the real puzzle, the first and second rings are free to
-    move but the third ring is constrained in a manner similar
-    to the second ring in this illustration.
+    The following illustration (sideways) shows a three-ring
+    case of this puzzle.  If you look carefully, you can see
+    that the first ring could be lifted over the edge of the U
+    and slid down through the center of the U, thereby freeing
+    the U from the first iron rod.  The second ring can also be
+    freed in the initial configuration since it is already over
+    the rod for the first ring.  The third ring cannot be moved,
+    however.  If the first first is removed, then the third ring
+    is no longer blocked by the first ring's iron rod and can be
+    removed freely.  The second ring, however cannot be moved
+    if the first ring is gone because it will then be blocked by
+    the first ring in its new position oustide of the U.
 
 
-			 ///==\\\              ///==\\\              ///==\\\
-		     XXXXXXX   |||         XXXXXXX   |||         XXXXXXX   |||
-		    XX //  XX  |||        XX //  XX  |||        XX //  XX  |||
-		   XX  \\===== |||       XX  \\===== |||       XX  \\===== |||                    ///=\\\
-		  XX       XX  |||      XX       XX  |||      XX       XX  |||                   ///  ///
-	     //=-XX-=-========-|||-===-XX-==========-|||-===-XX-==========-|||-======================///
-	    ///=XX-===========-|||-==-XX-===========-|||-==-XX-===========-|||-=====================///
-	    || XX       XX     |||   XX        X     |||   XX        XX    |||                ///  ///
-            | XX       XX      |||  XX        XX     |||  XX        XX     |||               ///  ///
-	     XX ==================-XX-==================-XX-=====================================///
-	    XX ==================-XX-==================-XX-=====================================///
-	   XX       XX         | XX        XX        | XX        XX        |||            ///  ///
-	  XX       XX           XX        XX          XX        XX         |||            \\\=///
-	 XX       XX           XX        XX          XX        XX          |||
-	XX       XX           XX |      XX          XX |      XX           |||
-       XX       XX           XX ||     XX          XX ||     XX            |||
-      XX       XX           XX |||    XX          XX |||    XX             |||
-     XX       XX           XX  |||   XX          XX  |||   XX              |||
-     XX      XX            XX  |||  XX           XX  |||  XX               |||
-      XXXXXXX   	    XX ||| X              XX ||| X                 |||
-			       |||                   |||                   |||
-		_______________|||___________________|||___________________|||_____________
-	       /               |||_                  |||_                  |||_           /
-	      /                |||/                  |||/                  |||/          /
-	     /                /__/                  /__/                  /__/          /
-	    /__________________________________________________________________________/
-			       |||                   |||                   |||
-			       |||                   |||                   |||
-			     =======               =======               =======
-						                      
-						                      
+			       //==\\
+			      ||    ||
+			      ||    ||
+			 *****||**  ||
+		       ***    || ***||
+		       **     ||   *||
+	  |\           **     ||    ||**
+	  | \           ***   ||    ||  ***
+	  |  \            ***  |    ||    ===
+	  |   \             ***     ||  // * \\
+	  |    \              ***   || || **  ||
+	  |     |             | **********    ||
+	  |     |             ||    || ||     ||
+	  |     |             ||    || ||     ||
+	  |     |        *****||**  ||  \\    ||
+       |  | |\  |      ***    || ***||        ||
+       |==| |=========-**-===-||-============//
+       |==| |=========-**-===-||-===========//
+       |  |  \| |       ***   ||    ||  ***
+	  |     |         *** ||    ||    ===
+	  |     |           ***|    ||  // * \\
+	  |     |             ***   || || **  ||
+	  |     |             ||**********    ||
+	  |     |             ||    || ||     ||
+	  |     |        *****||**  ||  \\    ||
+       |  | |\  |      ***    || ***||        ||
+       |==| |=========-**-===-||-============//
+       |==| |=========-**-===-||-===========//
+       |  |  \| |       ***   ||    ||  ***
+	  |     |         *** ||    ||    ===
+	  |     |           ***|    ||  // * \\
+	  |     |             ***   || || **  ||
+	  |     |             ||**********    ||
+	  |     |             ||    || ||     ||
+	  |     |             ||    || ||     ||
+       |  |     |             ||    ||  \\    ||
+       |  | |\  |             ||    ||        ||
+       |==| |================-||-============//
+       |==| |================-||-===========//
+       |  |  \| |             ||    ||
+	  |     |             ||    ||
+	  |     |             ||    ||
+	  |     |             ||    ||
+	  \     |             ||    ||
+	   \    |              \\   ||
+	    \   |               \\  ||
+	     \  |                \\ ||
+	      \ |                 \\||
+	       \|                  \||
+
+
 
     This puzzle takes other forms as well.  Two puzzles with the
     identical solution that are of completely different physical
