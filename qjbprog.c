@@ -1,6 +1,6 @@
 extern void *malloc(int);
 
-char *m0 = "invalid";
+char *m0 = "Usage: %s [+|-]n\n\tn != 0\n";
 char *m1 = "move ring %d from stack %d to stack %d\n";
 
 char *bits;
@@ -36,7 +36,9 @@ void addrem(int n, char c)
 
 int main(int argc, char *argv[])
 {
-    len = atoi(argv[1]);
+    if ((argc != 2) || ((len = atoi(argv[1])) == 0))
+	return printf(m0, argv[0]), 1;
+
     if (len > 0)
     {
 	move_stack(len, 1, 2, 3);
@@ -48,8 +50,6 @@ int main(int argc, char *argv[])
 	puts(bits);
 	addrem(len, '0');
     }
-    else
-	return puts(m0), 1;
 
     return 0;
 }
